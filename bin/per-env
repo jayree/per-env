@@ -17,8 +17,8 @@ var env = Object.assign(
   // Explicit env takes precedence
   process.env
 );
-//bug: qiulang, in windows, command should be npm.cmd
-var command = "npm";
+
+var command = "yarn";
 
 var script = [
   env.npm_lifecycle_event, // e.g. "start"
