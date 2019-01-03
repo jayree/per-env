@@ -3,20 +3,20 @@ const spawn = require('cross-spawn');
 
 var pkg = require(process.cwd() + "/package.json");
 var spawnSync = require("child_process").spawnSync;
-
-// Default to "development"
-var NODE_ENV = process.env.NODE_ENV || "production";
+var NODE_ENV = process.env.NODE_ENV || "";
 
 var env = Object.assign(
   {},
   // Default NODE_ENV
-  { NODE_ENV: NODE_ENV},
+  { NODE_ENV: NODE_ENV },
   // Override with package.json custom env variables
   (pkg && pkg["per-env"] && pkg["per-env"][NODE_ENV]) || {},
-
   // Explicit env takes precedence
   process.env
 );
+
+// Default blank to "production"
+if (env.NODE_ENV.trim() === "") env.NODE_ENV = "production"
 
 var command = "yarn";
 
